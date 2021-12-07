@@ -1,0 +1,136 @@
+\documentclass[oneside,draft]{book}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+\usepackage{amsmath,amssymb}
+
+\usepackage[colorlinks,final]{hyperref}
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!60!black},
+    citecolor={blue!60!black},
+    urlcolor={blue!80!black}
+}
+
+\usepackage{amsthm}
+\newtheorem{proposicion}{Proposición}[chapter]
+\newtheorem{corolario}[proposicion]{Corolario}
+\newtheorem{lema}[proposicion]{Lema}
+\newtheorem{teorema}[proposicion]{Teorema}
+\newtheorem{conjetura}[proposicion]{Conjetura}
+
+\theoremstyle{definition}
+\newtheorem{algoritmo}[proposicion]{Algoritmo}
+\newtheorem{comentario}[proposicion]{Comentario}
+\newtheorem{definicion}[proposicion]{Definición}
+\newtheorem{ejemplo}[proposicion]{Ejemplo}
+
+\newtheorem{ejercicio}{Ejercicio}[chapter]
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+
+\renewcommand{\Re}{\operatorname{Re}}
+
+\DeclareMathOperator{\mcd}{mcd}
+\DeclareMathOperator{\mcm}{mcm}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\li}{li}
+
+\newcommand{\legendre}[2]{\left(\frac{#1}{#2}\right)}
+
+\usepackage{framed}
+
+\usepackage[final]{graphicx}
+
+\usepackage[dvipsnames]{xcolor}
+\definecolor{shadecolor}{rgb}{0.79,0.78,0.65}
+\usepackage{colortbl}
+
+\newcommand\hl[1]{\fboxsep=0pt\colorbox{shadecolor}{$\displaystyle#1$}}
+
+\usepackage{tikz-cd}
+\usetikzlibrary{babel}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\usepackage{cancel}
+
+\renewcommand*{\thefootnote}{(\arabic{footnote})}
+
+\usepackage[numbers]{natbib}
+
+\newcommand\oeis[1]{[\href{https://oeis.org/#1}{#1}]}
+
+\usepackage{array}
+\newcolumntype{x}[1]{>{\centering\hspace{0pt}}p{#1}}
+\usepackage{diagbox}
+
+\def\mystrut(#1,#2){\vrule height #1 depth #2 width 0pt}
+
+\newcolumntype{f}[1]{%
+>{\mystrut(3ex,2ex)\centering}%
+p{#1}%
+<{}}
+
+\begin{document}
+
+%% \tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\iffalse
+\input{introduccion.tex}
+\input{preliminares.tex}
+\fi
+
+%% \part{Aritmética de los números enteros}
+\input{divisibilidad.tex}
+% \input{numeros-primos.tex}
+% \input{mcd-y-mcm.tex}
+% \input{teorema-fundamental.tex}
+
+% \input{valuaciones-p-adicas.tex}
+% \input{funciones-multiplicativas-e-inversion-de-moebius.tex}
+% \input{ternas-pitagoricas-y-descenso.tex}
+% \input{distribucion-de-primos.tex}
+
+% \part{Aritmética módulo n}
+
+% \input{motivacion-ecuaciones-diofanticas.tex}
+% \input{congruencias-y-residuos-mod-n.tex}
+% \input{teorema-chino-del-residuo.tex}
+% \input{residuos-invertibles-y-funcion-de-euler.tex}
+% \input{teorema-de-lagrange.tex}
+% \input{raices-primitivas.tex}
+% \input{teorema-de-dos-cuadrados.tex}
+% \input{lema-de-hensel.tex}
+% \input{principio-local-global.tex}
+
+% \part{Reciprocidad cuadrática}
+
+% \input{simbolo-de-legendre.tex}
+% \input{reciprocidad-cuadratica.tex}
+% \input{simbolo-de-jacobi.tex}
+
+% \appendix
+% \input{lista-de-primos.tex}
+
+% \backmatter
+
+% \cleardoublepage
+
+% \phantomsection
+
+% \addcontentsline{toc}{chapter}{Bibliografía}
+
+% \bibliography{tn-intro}
+% \bibliographystyle{amsalpha-cust}
+
+\end{document}

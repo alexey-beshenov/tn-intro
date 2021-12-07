@@ -1,0 +1,503 @@
+\chapter{Divisibilidad y división con residuo}
+\label{cap:divisibilidad}
+
+Al principio del curso, nos van a interesar las propiedades
+\textbf{multiplicativas} (es decir, las que tienen algo que ver con la
+multiplicación) de los números enteros. Un concepto clave en nuestras
+investigaciones es la \textbf{relación de divisibilidad}. Por ejemplo, el número
+$20$ es divisible por $1, 2, 4, 5, 10, 20$.
+
+Un poco más general es la noción de \textbf{división con residuo}: aunque $20$
+no es divisible por $3$, podemos escribir $\frac{20}{3} = 6\frac{2}{3}$; es
+decir, expresar $20 = 6\cdot 3 + 2$. Aquí el número $2$ es el \textbf{residuo}
+de división de $20$ por $3$. La división con residuo también tendrá mucha
+importancia en nuestro curso.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Divisibilidad}
+
+\begin{definicion}
+  Para dos números enteros $a$ y $b$ se dice que
+  \textbf{$a$ es divisible por $b$} si existe $c \in \ZZ$ tal que $a = bc$.  En
+  este caso también se escribe «$b \mid a$» y se dice que
+  \textbf{$b$ divide a $a$}, o que $b$ es un \textbf{divisor} de $a$.
+
+  Cuando $a$ no es divisible por $b$ (es decir, $b$ no divide al número $a$),
+  vamos a escribir «$b \nmid a$».
+\end{definicion}
+
+\begin{ejemplo}
+  Para $a = 60$, los números
+  $$b = 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60$$
+  son diferentes divisores positivos de $a$. Los mismos con el signo «$-$» son
+  los divisores negativos de $a$. Esta propiedad de $60$ de tener muchos
+  divisores fue notada por los babilónicos. Por esto la hora todavía se divide
+  en $60$ minutos, el círculo en $360$ grados, etcétera. Por la misma razón
+  algunos productos, por ejemplo huevos o tortillas, a veces se venden por
+  docena: los divisores no triviales de $10$ son solamente $2$ y $5$, mientras
+  que $12$ es divisible por $2$, $3$, $4$, $6$.
+\end{ejemplo}
+
+\begin{ejemplo}
+  Para $a = 31$, los únicos divisores son $b = \pm 1, \pm 31$. En cierto
+  sentido, el número $31$ no tiene divisores no triviales. Este es un número
+  primo. Vamos a introducir los números primos en el siguiente capítulo, y estos
+  serán uno de los objetos principales de nuestro curso.
+\end{ejemplo}
+
+\begin{proposicion}
+  Sean $a$ y $b$ dos números enteros.
+
+  \begin{enumerate}
+  \item[1)] Si $b \mid a$, entonces $|b| \le |a|$.
+
+  \item[2)] Si $b \mid a$ y $a \mid b$, entonces $a = \pm b$.
+  \end{enumerate}
+
+  \begin{proof}
+    Si $a = bc$, entonces $|a| = |b| \cdot |c|$.
+  \end{proof}
+\end{proposicion}
+
+He aquí algunas propiedades básicas de la relación de divisibilidad.
+
+\begin{proposicion}
+  Sean $a,b,c$ números enteros.
+
+  \begin{enumerate}
+  \item[1)] $1\mid a$, $a \mid a$, $a \mid 0$ para cualquier $a$,
+
+  \item[2)] $a\mid 1$ si y solamente si $a = \pm 1$,
+
+  \item[3)] $0\mid a$ si y solamente si $a = 0$,
+
+  \item[4)] si $c \mid a$ y $c \mid b$, entonces $c \mid (a + b)$,
+
+  \item[5)] si $c \mid b$ y $b \mid a$, entonces $c \mid a$,
+
+  \item[6)] si $c \ne 0$, entonces $ac \mid bc$ implica $a\mid b$.
+
+  \item[7)] $b \mid a$ si y solamente si $-b \mid a$.
+  \end{enumerate}
+
+  \begin{proof}
+    Ejercicio.
+  \end{proof}
+\end{proposicion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{División con residuo (euclidiana)}
+
+Cuando $b \nmid a$, la división $\frac{a}{b}$ no es posible en números enteros,
+pero se puede usar la \textbf{división con residuo}. Esta también se conoce como
+la \textbf{división euclidiana}, ya que aparece en los «Elementos» de Euclides.
+
+\begin{proposicion}[División con resuduo]
+  Para dos números enteros $a$ y $b \ne 0$, existen $q$ (cociente) y $r$
+  (residuo) tales que
+  \[ a = qb + r,
+    \quad
+    0 \le r < |b|. \]
+  Además, estas propiedades definen a $q$ y $r$ de manera única.
+\end{proposicion}
+
+\begin{proof}[Primera demostración de existencia]
+  Pongamos
+  \[ q =
+    \begin{cases}
+      \lfloor a/b\rfloor, & \text{si }b > 0,\\
+      \lceil  a/b\rceil,  & \text{si }b < 0,
+    \end{cases} \]
+  donde
+  \begin{align*}
+    \lfloor x \rfloor & = \max \{ n \in \ZZ \mid n \le x \},\\
+    \lceil x \rceil & = \min \{ n \in \ZZ \mid n \ge x \}.
+  \end{align*}
+  Dejo al lector verificar que para $r = a - qb$ se cumple $0 \le r < |b|$.
+\end{proof}
+
+\begin{proof}[Segunda demostración de existencia]
+  Consideremos el conjunto de enteros
+  $$X = \{ a - qb \mid q \in \ZZ \}.$$
+  Este contiene números positivos, y podemos escoger $r$ como el mínimo elemento
+  positivo en $X$. Dejo al lector que esto nos da la expresión deseada
+  $a = qb + r$.
+\end{proof}
+
+\begin{proof}[Demostración de unicidad]
+  Supongamos que
+  $$a = qb + r = q' b + r',$$
+  donde $0 \le r, r' \le |b|$. Vamos a ver que necesariamente $r = r'$.
+  Supongamos que $r' \ge r$. Entonces,
+  $$0 = (q'-q)\,b + (r'-r).$$
+  La ecuación de arriba nos dice que $b \mid r' - r$, pero
+  $0 \le r' - r < |b|$. Podemos concluir que $r = r'$, y luego $q = q'$.
+\end{proof}
+
+La división con residuo se usa muy a menudo en la vida cotidiana. Por ejemplo,
+en lugar de «$\frac{5}{4}$» a veces se escribe «$1\frac{1}{4}$».
+
+\begin{ejemplo}
+  Tenemos $b \mid a$ si y solamente si $r = 0$ y $q = a/b$.
+\end{ejemplo}
+
+\begin{ejemplo}
+  Para $a = 15$ y $b = 7$ se tiene $15 = 2\cdot 7 + 1$, así que $(q,r) = (2,1)$.
+\end{ejemplo}
+
+\begin{ejemplo}
+  El residuo de división por $b = 2$ es $r = 0$, cuando $a = 2q$ es un
+  \textbf{número par} y el residuo es $r = 1$ cuando $q = 2q+1$ es un
+  \textbf{número impar}.
+\end{ejemplo}
+
+He aquí una aplicación de la división con residuo.
+
+\begin{proposicion}
+  Para un entero $a > 1$ y números naturales $m, n$, se tiene
+  $$(a^m - 1) \mid (a^n-1) \iff m \mid n.$$
+
+  \begin{proof}
+    Dividiendo con residuo
+    $n = qm + r$,
+    \begin{align*}
+      \frac{a^n-1}{a^m-1} & = \frac{(a^{qm + r} - a^r) + (a^r - 1)}{a^m - 1} \\
+                          & = \frac{a^{qm} - 1}{a^m - 1}\,a^r + \frac{a^r - 1}{a^m - 1} \\
+                          & = \underbrace{a^r \, \sum_{0 \le i < q} a^{im}}_{\text{entero}} + \frac{a^r - 1}{a^m - 1}.
+    \end{align*}
+    Entonces,
+    $$(a^m - 1) \mid (a^n-1) \iff (a^m - 1) \mid (a^r - 1).$$
+    Pero ojo: siendo el residuo de división por $m$, sabemos que $r < |m|$, así
+    que la única opción es $r = 0$. Entonces, $m \mid n$.
+  \end{proof}
+\end{proposicion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Descomposición en base $b$}
+
+El siguiente resultado, seguramente conocido al lector para el caso de $b = 10$,
+también se demuestra usando la división con residuo.
+
+\begin{teorema}
+  Fijemos un entero $b \ge 2$. Todo entero $a \ge 0$ puede ser escrito como
+  \begin{equation}
+    \label{eqn:expresion-en-base-b}
+    a = a_0 + a_1\,b + a_2\,b^2 + \cdots + a_k\,b^k,
+  \end{equation}
+  donde $0 \le a_i \le b-1$ y $a_k \ne 0$. Además, esta expresión es única.
+
+  \begin{proof}
+    Usando división con residuo, podemos escribir sucesivamente, hasta obtener
+    $q_{k+1} = 0$,
+    \begin{align*}
+      a & = b q_0 + a_0 \\
+        & = b \, (b q_1 + a_1) + a_0 \\
+        & = b \, (b \, (b q_2 + a_2) + a_1) + a_0 \\
+        & = \cdots \\
+        & = a_0 + a_1\,b + a_2\,b^2 + \cdots + a_k\,b^k.
+    \end{align*}
+
+    Para la unicidad, supongamos que
+    $$a = a_0' + a_1'\,b + a_2'\,b^2 + \cdots + a_k'\,b^k.$$
+    Sin pérdida de generalidad, $a_0 \ge a_0'$. En este caso $a_0 - a_0'$ es un
+    múltiplo de $b$, y además $0 \le a_0 - a_0' \le b-1$, así que $a_0 = a_0'$.
+    Podemos pasar a los números $\frac{a - a_0}{b}$ y $\frac{a' - a_0'}{b}$ para
+    concluir que $a_1 = a_1'$, etcétera.
+  \end{proof}
+\end{teorema}
+
+\begin{comentario}
+  Normalmente la expresión \eqref{eqn:expresion-en-base-b} se escribe como
+  $$a_k a_{k-1} \cdots a_1 a_0.$$
+  Por ejemplo,
+  $$12345 = 10^4 + 2\cdot 10^3 + 3\cdot 10^2 + 4\cdot 10 + 5.$$
+\end{comentario}
+
+\begin{comentario}
+  En la vida cotidiana se usa la base \textbf{decimal} ($b = 10$).
+
+  En la informática son comunes la base \textbf{binaria} ($b = 2$),
+  \textbf{octal} ($b = 8$), y \textbf{hexadecimal} ($b = 16$). Los dígitos
+  hexadecimales más allá de $9$ normalmente se denotan por $A,B,C,D,E,F$.
+
+  En el fondo, todos los datos en la computadora se representan como una
+  sucesión de unos y ceros, es decir en la base binaria. De allí vienen las
+  unidades tradicionales de información:
+  \pagebreak
+
+  \marginpar{\footnotesize En el sistéma métrico los prefijos \emph{kilo-},
+    \emph{mega-}, \emph{giga-}, \emph{tera-} significan $10^3$, $10^6$, $10^9$,
+    $10^{12}$. Los mercadotécnicos sacaron provecho de esta confusión, y por
+    esto un disco duro marcado «$1$~TB» normalmente contiene $10^{12}$ bytes,
+    mucho menos de $2^{40}$. Así un disco «de $1$ terabyte» contiene un poco más
+    de $931$ verdaderos gigabytes.}
+  \begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{lll}
+      \hline
+      \textbf{bit} & & dígito $0$ ó $1$ \\
+      \hline
+      \textbf{byte} & (\textbf{B}; \textbf{octeto}) & $8$ bits \\
+      \hline
+      \textbf{kilobyte} & (\textbf{KB}) & $2^{10}$ bytes \\
+      \hline
+      \textbf{megabyte} & (\textbf{MB}) & $2^{20}$ bytes \\
+      \hline
+      \textbf{gigabyte} & (\textbf{GB}) & $2^{30}$ bytes \\
+      \hline
+      \textbf{terabyte} & (\textbf{TB}) & $2^{40}$ bytes \\
+      \hline
+      \dots & \dots
+    \end{tabular}
+  \end{center}
+\end{comentario}
+
+\begin{ejemplo}
+  Para expresar $2021$ en la base $3$, podemos ecribir
+  \begin{align*}
+    2021 & = 3\cdot 673 + 2 \\
+         & = 3\cdot (3\cdot 224 + 1) + 2 \\
+         & = 3\cdot (3\cdot (3\cdot 74 + 2) + 1) + 2 \\
+         & = 3\cdot (3\cdot (3\cdot (3\cdot 24 + 2) + 2) + 1) + 2 \\
+         & = 3\cdot (3\cdot (3\cdot (3\cdot (3\cdot 8 + 0) + 2) + 2) + 1) + 2 \\
+         & = 3\cdot (3\cdot (3\cdot (3\cdot (3\cdot (3\cdot \boxed{2} + \boxed{2}) + \boxed{0}) + \boxed{2}) + \boxed{2}) + \boxed{1}) + \boxed{2} \\
+         & = 2 + 3 + 2\cdot 3^2 + 2\cdot 3^3 + 2\cdot 3^5 + 2\cdot 3^6.
+  \end{align*}
+\end{ejemplo}
+
+\begin{comentario}
+  Los números reales también admiten una expresión en la base $b$
+  \[
+    x = a_k a_{k-1} \cdots a_1 a_0, a_{-1} a_{-2} a_{-3} \cdots
+    \longleftrightarrow
+    x = \sum_i a_i\cdot b^i.
+  \]
+  Los dígitos no son exactamente únicos, como por ejemplo en el caso de
+  $$1,000000\ldots = 0,999999\ldots$$
+
+  El $x$ de arriba es un número racional si y solamente si los dígitos son
+  «eventualmente periódicos»: es decir existe $n$ tal que $a_{-i} = a_{-(i+n)}$
+  para todo $i$ suficientemente grande. No vamos a dar pruebas de este
+  resultado, porque en este curso nos interesan más bien los números enteros.
+\end{comentario}
+
+\begin{proposicion}
+  El número de los dígitos de $a \ge 0$ en la base $b \ge 2$ es igual a
+  $$\lfloor\log_b (a)\rfloor + 1.$$
+
+  \begin{proof}
+    Notamos que $a$ tiene $n$ dígitos en la base $b$ si y solamente si
+    \[
+      b^{n-1} \le a < b^n
+      \iff
+      n-1 \le \log_b (a) < n
+      \iff
+      n = \lfloor\log_b (a)\rfloor + 1.
+      \qedhere
+    \]
+  \end{proof}
+\end{proposicion}
+
+Como consecuencia, si pasamos de base $b_1$ a otra base $b_2 > b_1$, el número
+de dígitos necesarios se disminiye proporcionalmente, con factor
+$\log (b_2) / \log (b_1)$. En este sentido, la elección de base no es muy
+importante, lo importante es no usar la base unaria
+\[ 1 = |, ~ 2 = ||, ~ 3 = |||, ~ 4 = ||||, ~ \ldots \]
+
+\begin{ejemplo}
+  \marginpar{\footnotesize Hay una evidencia de que hace cerca de 360 millones
+    de años todavía había animales vertebrados con seis, siete, u ocho dedos en
+    sus extremidades.}
+  Si la especie humana tuviera ocho dedos en cada mano en lugar de cinco,
+  seguramente usaríamos la base hexadecimal. Esto nos daría una economía en
+  dígitos de $\log(16)/\log(10) = 1.204119\ldots$ alrededor de $20\%$, que no es
+  mucho.
+\end{ejemplo}
+
+\begin{ejemplo}
+  Tenemos $3^6 < 2021 < 3^7$, así que $6 < \log_3 (2021) < 7$. Entonces,
+  $a = 2021$ tiene $7$ dígitos en la base $3$.
+\end{ejemplo}
+
+Se conocen varios «criterios de divisibilidad» que se formulan en términos de la
+expresión en la base $b$, normalmente $b = 10$. Voy a probar el criterio de
+divisibilidad por $3$, y dejaré algunos otros criterios en el
+ejercicio~\ref{ejerc:criterios-de-divisibilidad}.
+
+\begin{proposicion}
+  Expresemos un entero $a \ge 0$ en la base $10$:
+  $$a = a_0 + a_1\cdot 10 + a_2\cdot 10^2 + \cdots + a_k\cdot 10^k.$$
+
+  Ahora $3\mid a$ si y solamente si $3 \mid \sum_i a_i$.
+
+  \begin{proof}
+    Notamos que para cualquier $i \ge 1$, la división de $10^i$ por $3$ da
+    residuo $1$. De esta forma se obtiene la expresión
+    \[ a = a_0 + a_1 + a_2 + \cdots + a_k + (\text{algo divisible por }3). \qedhere \]
+  \end{proof}
+\end{proposicion}
+
+La última proposición es un típico ejemplo de resultados acerca de los dígitos
+de un número en cierta base. Estos normalmente no son muy profundos y pertenecen
+al terreno de las «matemáticas recreativas». No hay que olvidar que la expresión
+en base $b$ es nada más una manera cómoda de escribir los números.
+
+En el último argumento, la idea de ignorar el resto de términos que son
+divisibles por $3$ es algo que se llama la «reducción módulo $3$». Más adelante
+en el curso vamos a estudiar de manera sistemática la reducción módulo $n$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\section{Ejercicios}
+
+\begin{ejercicio}
+  Sea $a$ un número entero.
+
+  \begin{enumerate}
+  \item[a)] Demuestre que $6 \mid a\,(a+1)\,(a+2)$.
+
+  \item[b)] Demuestre que si $a$ es impar, entonces $8 \mid (a^2 - 1)$.
+
+  \item[c)] Demuestre que si $3\nmid a$, entonces $6 \mid (a^2 - 1)$.
+  \end{enumerate}
+\end{ejercicio}
+
+\begin{ejercicio}
+  Demuestre que para todo $n > 0$ se cumple $n^2 \mid (n+1)^n - 1$.
+\end{ejercicio}
+
+\begin{ejercicio}
+  ¿Para cuáles $a$ se cumple $a+1 \mid a^2 + 1$?
+\end{ejercicio}
+
+\begin{ejercicio}
+  Demuestre que $(n+1) \mid {2n \choose n}$ para todo $n = 0,1,2,\ldots$
+\end{ejercicio}
+
+\begin{ejercicio}
+  Demuestre que para todo $a > 0$ el número $3\,(1^5 + 2^5 + \cdots + a^5)$ es
+  divisible por $1^3 + 2^3 + \cdots + a^3$.
+\end{ejercicio}
+
+\begin{ejercicio}
+  Demuestre que para cualesquiera $a,b,c \in \ZZ$ se cumple
+  $$9 \mid (a^3 + b^3 + c^3) \Longrightarrow 3 \mid abc.$$
+\end{ejercicio}
+
+\begin{ejercicio}
+  Sea $a$ un entero.
+
+  \begin{enumerate}
+  \item[a)] Demuestre que para $n = 1,2,3,\ldots$ los números $a$ y $a^n$ tienen
+    la misma paridad.
+
+  \item[b)] Demuestre que si $a$ es impar, entonces el residuo de división de
+    $a^2$ por $8$ es igual a $1$.
+  \end{enumerate}
+\end{ejercicio}
+
+\begin{ejercicio}
+  Consideremos los números que son sumas de diferentes potencias de $3$:
+  \begin{align*}
+    a_1 & = 3^0 = 1, \\
+    a_2 & = 3^1 = 3, \\
+    a_3 & = 3^0 + 3^1 = 4, \\
+    a_4 & = 3^2 = 9, \\
+    a_5 & = 3^0 + 3^2 = 10, \\
+    a_6 & = 3^1 + 3^2 = 12, \\
+    a_7 & = 3^0 + 3^1 + 3^2 = 13, \\
+        & \cdots
+  \end{align*}
+  Encuentre el número $a_{100}$ en esta sucesión.
+\end{ejercicio}
+
+\begin{ejercicio}
+  ¿Cuántos dígitos binarios tiene el número $10^n$?
+\end{ejercicio}
+
+Definamos el \textbf{factorial de $n$} como el producto de los números
+$1, 2, \ldots, n$:
+$$n! = 1\cdot 2\cdot 3\cdots (n-1)\cdot n$$
+Por ejemplo, $10! = 3628800$.
+
+\textbf{**TODO**} \emph{Debe haber el «capítulo 0» con factoriales, coeficientes
+  binomiales, etc.}
+
+\begin{ejercicio}
+  ¿Cuántos dígitos decimales tiene $n!$ para $n = 2021$?
+\end{ejercicio}
+
+\begin{ejercicio}
+  En la base hexadecimal los dígitos normalmente se denotan por
+  $$0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F.$$
+  Con ayuda de calculadora, exprese en la base decimal los números hexadecimales
+  $BADCAFE$ y $DEADBEEF$.
+\end{ejercicio}
+
+A parte de la expresión en la base $b$ de la forma $\sum_i a_i\,b^i$ con
+$0 \le a_i < b$, existen otras representaciones un poco más exóticas. Vamos a
+explorar un par de estas en el siguiente ejercicio.
+
+\begin{ejercicio}
+  Sea $a \ge 0$ un número entero.
+
+  \begin{enumerate}
+  \item[a)] Demuestre que $a$ puede ser escrito de manera única como
+    $$a = a_0 + a_1\,3 + a_2\,3^2 + \cdots + a_k\,3^k,$$
+    donde $a_i \in \{ -1, 0, +1 \}$.
+
+  \item[b)] Demuestre lo mismo con $b = 2n+1$ en lugar de $3$ los dígitos
+    $$a_i \in \{ -n, \ldots, -1, 0, +1, \ldots, +n \}.$$
+
+  \item[c)] Demuestre que $a$ puede ser escrito de manera única como
+    $$a = a_1\cdot 1! + a_2\cdot 2! + a_3\,3! + \cdots + a_k\cdot k!,$$
+    donde $0 \le a_i \le i$.
+  \end{enumerate}
+
+  ¿Cómo se expresa $a = 100$ en cada una de estas bases?
+\end{ejercicio}
+
+\begin{ejercicio}
+  \label{ejerc:criterios-de-divisibilidad}
+  Expresemos un entero $a \ge 0$ en la base $10$:
+  $$a = a_0 + a_1\cdot 10 + a_2\cdot 10^2 + \cdots + a_k\cdot 10^k.$$
+
+  Demuestre los siguientes criterios de divisibilidad.
+
+  \begin{itemize}
+  \item $2\mid a$ si y solamente si el último dígito de $a$ es par
+    ($0, 2, 4, 6, 8$).
+
+  \item $4\mid a$ si y solamente si los últimos dos dígitos forman un número
+    $a_1 a_0$ que es divisible por $5$.
+
+  \item $5\mid a$ si y solamente si el último dígito $a_0$ es $0$ o $5$.
+
+  \item $10\mid a$ si y solamente si el último dígito $a_0$ es $0$.
+
+  \item $11\mid a$ si y solamente si la suma alternante de los dígitos
+    $\sum_i (-1)^i\,a_i$ es divisible por $11$, por ejemplo
+    \[ 11\mid 87109, \quad 8 - 7 + 1 - 0 + 9 = 11. \]
+  \end{itemize}
+\end{ejercicio}
+
+También existen criterios de divisibilidad por $7$, $13$, etc. pero son más
+complicados y al mismo tiempo bastante inútiles.
+
+\begin{ejercicio}[N.\,Anning]
+  Demuestre que la fracción
+  $$\frac{101010101}{110010011}$$
+  tiene el mismo valor si «$1$» en el medio del númerador y denominador se
+  remplaza por un número impar de $1$'s:
+  \[
+    \frac{101010101}{110010011} =
+    \frac{10101110101}{11001110011} =
+    \frac{1010111110101}{1100111110011} = \cdots
+  \]
+
+  Esto es válido en cualquier base $b$.
+\end{ejercicio}
