@@ -1,0 +1,16 @@
+*~
+
+# LaTeX stuff
+*.aux
+*.bbl
+*.blg
+*.log
+*.mpx
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb
+
+# LaTeX output
+*.pdf
