@@ -1,0 +1,35 @@
+\ifdefined\handout
+  \documentclass[handout]{beamer}
+\else
+  \documentclass{beamer}
+\fi
+
+\usetheme{boxes}
+\usecolortheme{structure}
+\definecolor{beamer@structure@color}{rgb}{1,1,1}
+\setbeamertemplate{navigation symbols}{}
+\setbeamercolor{normal text}{fg=white,bg=black}
+
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{frametitle}{\color{white}
+\def\myhrulefill{\leavevmode\leaders\hrule height 1pt\hfill\kern 0pt}
+\headingfont\insertframetitle\par\vskip-8pt\myhrulefill}
+
+\usepackage{amsmath,amssymb}
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+\usepackage[spanish]{babel}
+
+\usepackage{tikz-cd}
+\usetikzlibrary{babel}
+\usetikzlibrary{calc}
+
+\usepackage{mathspec}
+\setsansfont[BoldFont={IBM Plex Sans Bold}, ItalicFont={IBM Plex Sans Italic}]{IBM Plex Sans}
+\setmonofont[BoldFont={IBM Plex Mono Bold}, ItalicFont={IBM Plex Mono Italic}]{IBM Plex Mono}
+\setmathrm[BoldFont={IBM Plex Sans Bold}, ItalicFont={IBM Plex Sans Italic}]{IBM Plex Sans}
+\newfontfamily\headingfont[]{IBM Plex Sans Bold}
+
+\setbeamercovered{transparent=10}
