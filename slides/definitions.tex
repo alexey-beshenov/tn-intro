@@ -11,7 +11,7 @@
 \setbeamercolor{normal text}{fg=white,bg=black}
 
 \setbeamertemplate{footline}[frame number]
-\setbeamertemplate{frametitle}{\color{white}
+\setbeamertemplate{frametitle}{\vskip 15pt\color{white}
 \def\myhrulefill{\leavevmode\leaders\hrule height 1pt\hfill\kern 0pt}
 \headingfont\insertframetitle\par\vskip-8pt\myhrulefill}
 
@@ -25,6 +25,11 @@
 \usepackage{tikz-cd}
 \usetikzlibrary{babel}
 \usetikzlibrary{calc}
+
+\usepackage{framed}
+
+\newcommand{\dfn}{\mathrel{\mathop:}=}
+\newcommand{\rdfn}{=\mathrel{\mathop:}}
 
 \usepackage{mathspec}
 \setsansfont[BoldFont={IBM Plex Sans Bold}, ItalicFont={IBM Plex Sans Italic}]{IBM Plex Sans}
