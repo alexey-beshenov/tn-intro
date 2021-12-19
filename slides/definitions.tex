@@ -6,14 +6,24 @@
 
 \usetheme{boxes}
 \usecolortheme{structure}
+
+\setbeamertemplate{footline}[frame number]
+
+\ifdefined\handout
+\definecolor{beamer@structure@color}{rgb}{0,0,0}
+\setbeamertemplate{navigation symbols}{}
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamertemplate{frametitle}{\vskip 15pt\color{black}
+\def\myhrulefill{\leavevmode\leaders\hrule height 1pt\hfill\kern 0pt}
+\headingfont\insertframetitle\par\vskip-8pt\myhrulefill}
+\else
 \definecolor{beamer@structure@color}{rgb}{1,1,1}
 \setbeamertemplate{navigation symbols}{}
 \setbeamercolor{normal text}{fg=white,bg=black}
-
-\setbeamertemplate{footline}[frame number]
 \setbeamertemplate{frametitle}{\vskip 15pt\color{white}
 \def\myhrulefill{\leavevmode\leaders\hrule height 1pt\hfill\kern 0pt}
 \headingfont\insertframetitle\par\vskip-8pt\myhrulefill}
+\fi
 
 \usepackage{amsmath,amssymb}
 

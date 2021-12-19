@@ -1,8 +1,13 @@
-all: divisibilidad.pdf division-con-residuo.pdf
+all: divisibilidad.pdf divisibilidad-handout.pdf \
+     division-con-residuo.pdf division-con-residuo-handout.pdf
 
 %.pdf: %.tex
 	xelatex $<
 	xelatex $<
+
+%-handout.pdf: %.tex
+	xelatex -jobname=$(<:.tex=-handout) '\let\handout=1 \input' $<
+	xelatex -jobname=$(<:.tex=-handout) '\let\handout=1 \input' $<
 
 clean:
 	rm -f divisibilidad.pdf
