@@ -1,0 +1,388 @@
+\input{definitions.tex}
+
+\begin{document}
+
+\begin{frame}[plain,noframenumbering]
+  \textbf{INTRODUCCIÓN A LA TEORÍA DE NÚMEROS}
+
+  Alexey Beshenov $\mid$ \texttt{cadadr.org}
+
+  \vfill
+
+  \begin{center}\headingfont{\huge
+      NUMERACIÓN POSICIONAL
+
+      (EN LA BASE b)
+
+      \vspace{1em}}
+
+    \large (decimal, binaria, octal, hexadecimal, etc.)
+  \end{center}
+
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{TEOREMA}
+
+  \begin{framed}
+    Fijemos un entero $b \ge 2$.
+
+    \onslide<2->{Todo entero $a \ge 0$ puede ser escrito de modo único como
+      \[ a = a_k\,b^k + a_{k-1}\,b^{k-1} + \cdots + a_2\,b^2 + a_1\,b + a_0 \]
+      donde $0 \le a_i \le b-1$ y $a_k \ne 0$.}
+  \end{framed}
+
+  \onslide<3->{\textbf{Notación}:
+    \[ a = \underline{a_k a_{k-1} \cdots a_2 a_1 a_0}_b. \]}
+\end{frame}
+
+\begin{frame}
+  \frametitle{EJEMPLO}
+
+  \begin{align*}
+    123 & \onslide<2->{= \underline{123}_{10}} && \onslide<2->{= 10^2 + 2\cdot 10 + 3,} \\
+        & \onslide<3->{= \underline{1111011}_2} && \onslide<3->{= 2^6 + 2^5 + 2^4 + 2^3 + 2 + 1,} \\
+        & \onslide<4->{= \underline{11120}_3} && \onslide<4->{= 3^4 + 3^3 + 3^2 + 2\cdot 3,} \\
+        & \onslide<5->{= \underline{1323}_4} && \onslide<5->{= 4^3 + 3\cdot 4^2 + 2\cdot 4 + 3,} \\
+        & \onslide<6->{= \underline{443}_5} && \onslide<6->{= 4\cdot 5^2 + 4\cdot 5 + 3,} \\
+        & \onslide<7->{= \underline{323}_6} && \onslide<7->{= 3\cdot 6^2 + 2\cdot 6 + 3,} \\
+        & \onslide<8->{= \underline{234}_7} && \onslide<8->{= 2\cdot 7^2 + 3\cdot 7 + 4,} \\
+        & \onslide<9->{= \underline{173}_8} && \onslide<9->{= 8^2 + 7\cdot 8 + 3,} \\
+        & \onslide<10->{\cdots}
+  \end{align*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DEMOSTRACIÓN: EXISTENCIA}
+
+  \onslide<2->{División con residuo, hasta obtener el cociente $q_{k+1} = 0$:}
+  \begin{align*}
+    \onslide<3->{a} & \onslide<3->{= b q_0 + a_0} \\
+                    & \onslide<4->{= b \, (b q_1 + a_1) + a_0} \\
+                    & \onslide<5->{= b \, (b \, (b q_2 + a_2) + a_1) + a_0} \\
+                    & \onslide<6->{= b \, (b \, (b \, (b q_3 + a_3) + a_2) + a_1) + a_0} \\
+                    & \onslide<7->{= \cdots} \\
+                    & \onslide<8->{= a_k\,b^k + a_{k-1}\,b^{k-1} + \cdots + a_2\,b^2 + a_1\,b + a_0. \qed}
+  \end{align*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{EJEMPLO: 123 EN LA BASE 3}
+
+  \begin{align*}
+    123 & \onslide<2->{= 3\cdot 41 + \boxed{0}} \\
+        & \onslide<3->{= 3\cdot (3\cdot 13 + \boxed{2}) + \boxed{0}} \\
+        & \onslide<4->{= 3\cdot (3\cdot (3\cdot 4 + \boxed{1}) + \boxed{2}) + \boxed{0}} \\
+        & \onslide<5->{= 3\cdot (3\cdot (3\cdot (3\cdot \boxed{1} + \boxed{1}) + \boxed{1}) + \boxed{2}) + \boxed{0}} \\
+        & \onslide<6->{= 1\cdot 3^4 + 1\cdot 3^3 + 1\cdot 3^2 + 2\cdot 3 + 0} \\
+        & \onslide<7->{= \underline{11120}_3.}
+  \end{align*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DEMOSTRACIÓN: UNICIDAD}
+
+  \onslide<2->{\[ a_0 + a_1\,b + a_2\,b^2 + \cdots + a_k\,b^k = a_0' + a_1'\,b + a_2'\,b^2 + \cdots + a_k'\,b^k. \]}
+
+  \onslide<3->{\[ b \mid a_0 - a_0', \quad 0 \le |a_0 - a_0'| \le b-1. \]
+  Entonces, $a_0 = a_0'$.}
+
+  \onslide<4->{\begin{align*}
+    a_1\,b + a_2\,b^2 + \cdots + a_k\,b^k & = a_1'\,b + a_2'\,b^2 + \cdots + a_k'\,b^k, \\
+    a_1 + a_2\,b + \cdots + a_k\,b^{k-1} & = a_1' + a_2'\,b + \cdots + a_k'\,b^{k-1}.
+  \end{align*}}
+
+  \onslide<5->{$a_1 = a_1'$, etc\dots \qed}
+\end{frame}
+
+\begin{frame}
+  \frametitle{BASES COMUNES}
+
+  \onslide<2->{En la vida cotidiana:
+  \begin{itemize}
+  \item \textbf{decimal}: $b = 10$.
+  \end{itemize}}
+
+  \onslide<3->{En las matemáticas babilónicas (ca. 2000 a.C.):
+  \begin{itemize}
+  \item \textbf{sexagesimal}: $b = 60$.
+  \end{itemize}}
+
+  \onslide<4->{En la informática:}
+  \begin{itemize}
+  \item<4-> \textbf{binaria}: $b = 2$,
+
+  \item<5-> \textbf{octal}: $b = 8$,
+
+  \item<6-> \textbf{hexadecimal}: $b = 16$.
+
+    Los dígitos más allá de $9$ se denotan por
+
+    \texttt{A} (10), \texttt{B} (11), \texttt{C} (12), \texttt{D} (13), \texttt{E} (14), \texttt{F} (15).
+
+    \onslide<7->{\textbf{Ejemplo}:
+    \[ 2022 = 7\cdot 16^2 + 14 \cdot 16 + 6
+      = \underline{\texttt{7E6}}_{16}. \]}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{* NÚMEROS REALES}
+
+  \onslide<2->{\[
+    x = a_k a_{k-1} \cdots a_1 a_0, a_{-1} a_{-2} a_{-3} \cdots
+    \longleftrightarrow
+    x = \sum_i a_i\cdot b^i.
+  \]}
+
+  \begin{itemize}
+  \item<3-> Los dígitos no son necesariamente únicos:
+    $$1,000000\ldots = 0,999999\ldots$$
+
+  \item<4-> $x$ es \textbf{racional} si y solo si los dígitos son
+    \textbf{eventualmente periódicos}: existe $n$ tal que
+    $a_{-i} = a_{-(i+n)}$ para todo $i$ suficientemente grande.
+
+    \onslide<5->{\textbf{Ejemplo}:
+    \begin{align*}
+      \frac{1}{12} & = 0.0833333333\ldots \\
+          \sqrt{2} & = 1.4142135623\ldots \\
+          \text{π} & = 3.1415926535\ldots
+    \end{align*}}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{¿CUÁNTOS DÍGITOS NECESITAMOS?}
+
+  \begin{itemize}
+  \item<2-> Si $a$ tiene $n$ dígitos $a_0,a_1,\ldots,a_{n-1}$
+    en la base $b$:
+    \[ a = a_{n-1}\,b^{n-1} + \cdots + a_1\,b + a_0,
+      \quad
+      a_{n-1} \ne 0. \]
+
+  \item<3-> El número más grande de $n$ dígitos:
+    \[ (b-1)\,b^{n-1} + \cdots + (b-1)\,b + (b-1) = (b-1)\,\frac{b^n - 1}{b-1} = b^n - 1. \]
+
+  \item<4-> Cotas:
+    \begin{gather*}
+      b^{n-1} \le a < b^n, \\
+      \onslide<5->{n-1 \le \log_b (a) < n.}
+    \end{gather*}
+
+  \item<6-> Conclusión:
+    \[ n = \lfloor\log_b (a)\rfloor + 1. \]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{EJEMPLO}
+
+  \begin{align*}
+    \onslide<2->{10^1} & \onslide<2->{= \underline{\text{\texttt{1010}}}_2,} & \onslide<2->{\log_2 (10^1)} & \onslide<2->{\approx 3.32,} \\
+    \onslide<3->{10^2} & \onslide<3->{= \underline{\text{\texttt{1100100}}}_2,} & \onslide<3->{\log_2 (10^2)} & \onslide<3->{\approx 6.64,} \\
+    \onslide<4->{10^3} & \onslide<4->{= \underline{\text{\texttt{1111101000}}}_2,} & \onslide<4->{\log_2 (10^3)} & \onslide<4->{\approx 9.96,} \\
+    \onslide<5->{10^4} & \onslide<5->{= \underline{\text{\texttt{10011100010000}}}_2,} & \onslide<5->{\log_2 (10^4)} & \onslide<5->{\approx 13.28,} \\
+    \onslide<6->{10^5} & \onslide<6->{= \underline{\text{\texttt{11000011010100000}}}_2,} & \onslide<6->{\log_2 (10^3)} & \onslide<6->{\approx 16.60,} \\
+    \onslide<7->{10^6} & \onslide<7->{= \underline{\text{\texttt{11110100001001000000}}}_2,} & \onslide<7->{\log_2 (10^6)} & \onslide<7->{\approx 19.93,} \\
+       & \onslide<8->{\cdots}
+  \end{align*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{LA BASE NO ES MUY IMPORTANTE}
+
+  \begin{itemize}
+  \item<2-> Si pasamos de la base $b$ a $b' > b$, el número de dígitos se
+    disminuye proporcionalmente con factor $\sim \log_b (b')$.
+
+  \item<3-> Usamos la base $10$ porque tenemos diez dedos.
+
+  \item<4-> Si tuviéramos ocho dedos en cada mano, usaríamos la base
+    hexadecimal. Esto nos daría una economía en dígitos de
+    $\log_{10} (16) = 1.204119\ldots$ alrededor de $20\%$.
+
+    \vspace{0.5em}
+
+    \onslide<5->{\textbf{Ejemplo}:\small
+      \begin{align*}
+        20! & = 265252859812191058636308480000000 && (33\text{ dígitos}) \\
+            & = \underline{\text{\texttt{D13F6370F96865DF5DD54000000}}}_{16} && (27\text{ dígitos})
+      \end{align*}}
+
+  \item<6-> La elección de base no es muy
+    importante, lo importante es no usar la \textbf{base unaria}
+    \[ 1 = |, ~ 2 = ||, ~ 3 = |||, ~ 4 = ||||, ~ \ldots \]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{CRITERIOS DE DIVISIBILIDAD}
+
+  \onslide<2->{Consideremos $a = \underline{a_k a_{k-1} \cdots a_1 a_0}_{10}$.}
+
+  \begin{itemize}
+  \item<3-> $2\mid a$ si y solamente si el último dígito de $a$ es par
+    ($0, 2, 4, 6, 8$).
+
+  \item<4-> $5\mid a$ si y solamente si el último dígito $a_0$ es $0$ o $5$.
+
+  \item<5-> $10\mid a$ si y solamente si el último dígito $a_0$ es $0$.
+  \end{itemize}
+
+  \onslide<6->{\textbf{Demostración}: pequeño ejercicio.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{CRITERIO DE DIVISIBILIDAD POR 3}
+
+  \onslide<2->{\begin{framed}
+    Para $a = \underline{a_k a_{k-1} \cdots a_1 a_0}_{10}$ tenemos
+    $3 \mid a \iff 3 \mid \sum_i a_i$.
+  \end{framed}}
+
+  \onslide<3->{\textbf{Demostración} («reducción módulo 3»).}
+
+  \begin{itemize}
+  \item<4-> Para cualquier $i \ge 1$, la división de $10^i$ por $3$ da residuo $1$:
+    \onslide<5->{\[
+        \frac{10^i - 1}{3} = 3\,\frac{10^i - 1}{10 - 1}
+        = 3\,(1 + 10 + 10^2 + \cdots + 10^{i-1}) \in \ZZ.
+      \]}
+
+  \item<6-> Podemos escribir
+    \begin{align*}
+      a & = 10^k\,a_k + \cdots + 10^2\cdot a_2 + 10\cdot a_1 + a_0 \\
+        & \onslide<7->{= (3\cdot q_k + 1)\,a_k + \cdots + (3\cdot q_2 + 1)\,a_2 + (3\cdot q_1 + 1)\,a_1 + a_0} \\
+        & \onslide<8->{= a_0 + a_1 + a_2 + \cdots + a_k + (\text{algo divisible por }3). \qed}
+    \end{align*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[plain,noframenumbering]
+
+  \vfill
+
+  \begin{center}\huge\headingfont
+    EJERCICIOS
+  \end{center}
+
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{EJERCICIO 1: UN PAR DE CRITERIOS DE DIVISIBILIDAD}
+
+  \onslide<2->{Consideremos
+  \[ a = \underline{a_k a_{k-1} \cdots a_1 a_0}_{10}. \]}
+
+  \begin{itemize}
+  \item<3-> $4\mid a$ si y solamente si los últimos dos dígitos forman un número
+    $a_1 a_0$ que es divisible por $4$.
+    \onslide<4->{\textbf{Ejemplo}:
+    \[ 14156 = 4\cdot 3539, \quad 4 \mid 56. \]}
+
+  \item<5-> $11\mid a$ si y solamente si la suma alternante de los dígitos
+    $\sum_i (-1)^i\,a_i$ es divisible por $11$.
+    \onslide<6->{\textbf{Ejemplo}:
+    \[ 87109 = 7919\cdot 11, \quad 8 - 7 + 1 - 0 + 9 = 11. \]}
+
+  \item[*]<7-> Existen criterios de divisibilidad por $7$, $13$, etc.
+
+    Son más complicados y al mismo tiempo bastante inútiles.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{EJERCICIO 2: SUMAS DE DIFERENTES POTENCIAS DE 3}
+
+  \onslide<2->{Consideremos los números que son sumas de diferentes potencias de $3$:}
+  \begin{align*}
+    \onslide<3->{a_1} & \onslide<3->{= 3^0 = 1,} \\
+    \onslide<4->{a_2} & \onslide<4->{= 3^1 = 3,} \\
+    \onslide<5->{a_3} & \onslide<5->{= 3^0 + 3^1 = 4,} \\
+    \onslide<6->{a_4} & \onslide<6->{= 3^2 = 9,} \\
+    \onslide<7->{a_5} & \onslide<7->{= 3^0 + 3^2 = 10,} \\
+    \onslide<8->{a_6} & \onslide<8->{= 3^1 + 3^2 = 12,} \\
+    \onslide<9->{a_7} & \onslide<9->{= 3^0 + 3^1 + 3^2 = 13,} \\
+                      & \onslide<10->{\cdots}
+  \end{align*}
+  \onslide<11->{Encuentre el término $a_{100}$ en esta sucesión.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{EJERCICIO 3: BASE 3 CON DÍGITOS -1, 0, +1}
+
+  \onslide<2->{\begin{framed}
+    Todo entero $a$ puede ser escrito de manera única como
+    $$a = a_k\,3^k + \cdots + a_2\,3^2 + a_1\,3 + a_0,$$
+    donde $a_i \in \{ -1, 0, +1 \}$ y $a_k \ne 0$.
+  \end{framed}}
+
+  \onslide<3->{Por ejemplo,
+    \[
+      17 = 3^3 - 3^2 - 1,
+      \quad
+      57 = 3^4 - 3^3 + 3.
+    \]}
+
+  \onslide<4->{¿Cómo se expresa $a = 123$ en esta base?}
+
+  \onslide<5->{Demuestre lo mismo para
+    $$a = a_k\,5^k + \cdots + a_2\,5^2 + a_1\,5 + a_0$$
+    y $a_i \in \{ -2, -1, 0, +1, +2 \}$. Generalice este resultado.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{EJERCICIO 4: BASE FACTORIAL}
+
+  \onslide<2->{\begin{framed}
+    Todo entero $a \ge 0$ puede ser escrito de manera única como
+    $$a = a_k\,k! + a_{k-1}\,(k-1)! + \cdots + a_2\,2! + a_1,$$
+    donde $0 \le a_i \le i$ y $a_k \ne 0$.
+  \end{framed}}
+
+  \onslide<3->{Aquí el \textbf{factorial} está definido por
+  $n! \dfn 1\cdot 2\cdots (n-1)\cdot n$.}
+
+  \onslide<4->{Por ejemplo,
+    \[
+      17 = 2\cdot 3! + 2\cdot 2! + 1,
+      \quad
+      57 = 2\cdot 4! + 3! + 2! + 1.
+    \]}
+
+  \onslide<5->{¿Cómo se expresa $a = 123$ en esta base?}
+\end{frame}
+
+\begin{frame}
+  \frametitle{EJERCICIO 5: FRACCIÓN CON CEROS Y UNOS}
+
+  \onslide<2->{La fracción
+  $$\frac{101010101}{110010011}$$
+  tiene el mismo valor si «$1$» en el medio del númerador y denominador se
+  remplaza por un número impar de $1$'s.}
+
+  \[
+    \onslide<3->{\frac{101010101}{110010011} =
+      \frac{10101110101}{11001110011}}
+    \onslide<4->{= \frac{1010111110101}{1100111110011}}
+    \onslide<5->{= \cdots}
+  \]
+
+  \onslide<6->{Esto es válido en cualquier base $b$.}
+\end{frame}
+
+\begin{frame}[plain,noframenumbering]
+
+  \vfill
+
+  \begin{center}\huge\headingfont
+    ¡GRACIAS POR SU ATENCIÓN!
+  \end{center}
+
+  \vfill
+\end{frame}
+\end{document}
