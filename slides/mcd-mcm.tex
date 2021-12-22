@@ -1,0 +1,346 @@
+\input{definitions.tex}
+
+\begin{document}
+
+\begin{frame}[plain,noframenumbering]
+  \textbf{INTRODUCCIÓN A LA TEORÍA DE NÚMEROS}
+
+  Alexey Beshenov $\mid$ \texttt{cadadr.org}
+
+  \vfill
+
+  \begin{center}\huge\headingfont
+    MÁXIMO COMÚN DIVISOR,
+
+    \vspace{0.5em}
+
+    MÍNIMO COMÚN MÚLTIPLO,
+
+    \vspace{0.5em}
+
+    ALGORITMO DE EUCLIDES
+  \end{center}
+
+  \vfill
+\end{frame}
+
+\begin{frame}[plain,noframenumbering]
+  \vfill
+
+  \begin{center}\huge\headingfont
+    MÁXIMO COMÚN DIVISOR
+  \end{center}
+
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{MÁXIMO COMÚN DIVISOR (MCD)}
+
+  \onslide<2->{\textbf{Definición}. Para dos enteros $a$ y $b$,
+    el \textbf{máximo común divisor} $d = \mcd (a,b)$ es el
+    número natural $d$ tal que}
+  \begin{itemize}
+  \item<3-> es un \textbf{común divisor}: $d\mid a$ y $d\mid b$;
+  \item<4-> es \textbf{máximo}: si $c\mid a$ y $c\mid b$, entonces $c\mid d$.
+  \end{itemize}
+
+  \vspace{1em}
+
+  \onslide<5->{\textbf{Observación}. Esto define a $d$ de modo único.}
+
+  \onslide<6->{Si $d$ y $d'$ satisfacen estas propiedades, entonces
+    \[ d \mid d'\text{ y }d' \mid d \Longrightarrow d = d'. \]}
+
+  \vspace{1em}
+
+  \onslide<7->{\textbf{Ejemplo}. $\mcd (42, 30) = 6$.}
+
+  \onslide<8->{\begin{center}
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabular}{rcccccccccccc}
+      \hline
+      \onslide<8->{$d\mid 42$:} & \onslide<8->{$1$} & \onslide<8->{$2$} & \onslide<8->{$3$} & & \onslide<8->{$6$} & \onslide<8->{$7$} & & \onslide<8->{$14$} & & \onslide<8->{$21$} & & \onslide<8->{$42$} \\
+      \hline
+      \onslide<9->{$d\mid 30$:} & \onslide<9->{$1$} & \onslide<9->{$2$} & \onslide<9->{$3$} & \onslide<9->{$5$} & \onslide<9->{$6$} & & \onslide<9->{$10$} & & \onslide<9->{$15$} & & \onslide<9->{$30$} & \\
+      \hline
+    \end{tabular}
+  \end{center}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{COPRIMALIDAD}
+
+  \begin{itemize}
+  \item<2-> Si $p$ y $q$ son diferentes primos, entonces $\mcd (p,q) = 1$.
+
+  \item<3-> Si $\mcd (a,b) = 1$, se dice que $a$ y $b$ son \textbf{coprimos}.
+
+  \item<4-> \textbf{Ejemplo}: $14$ y $15$ son coprimos.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{PROPIEDADES BÁSICAS}
+
+  \begin{itemize}
+  \item<2-> $\mcd (a,a) = a$.
+
+  \item<3-> $\mcd (a,b) = a$ si y solo si $a\mid b$.
+
+  \item<4-> $\mcd (a,b) = \mcd (b,a)$.
+
+  \item<5-> $\mcd (\mcd (a,b), c) = \mcd (a, \mcd (b,c)) = \mcd (a,b,c)$.
+  \end{itemize}
+
+  \onslide<6->{\textbf{Demostración}. Ejercicio.}
+\end{frame}
+
+\begin{frame}
+
+  \vfill
+
+  \begin{center}\huge\headingfont
+    \onslide<2->{¿POR QUÉ EL MCD EXISTE?}
+
+    \vspace{1em}
+
+    \onslide<3->{¿CÓMO CALCULARLO?}
+  \end{center}
+
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{PROPIEDADES CLAVES DEL MCD}
+
+  \begin{itemize}
+  \item<2-> $\mcd (a,0) = a$ para todo $a$.
+
+    \onslide<3->{\textbf{Demostración}. $d \mid 0$ para todo $d$. \qed}
+
+  \item<4-> Si $a = qb + r$, entonces $\mcd (a,b) = \mcd (b,r)$.
+
+    \onslide<5->{\textbf{Demostración}.
+      $c \mid a, ~ c \mid b \iff c \mid b, ~ c \mid r$. \qed}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{ALGORITMO DE EUCLIDES}
+
+  \begin{align*}
+    \onslide<2->{r_0} & \onslide<2->{\dfn a,} \\
+    \onslide<3->{r_1} & \onslide<3->{\dfn b,} &&& \onslide<4->{\mcd (a,b)} & \onslide<4->{= \mcd (r_0,r_1).}
+  \end{align*}
+  \onslide<5->{División con residuo:}
+  \begin{align*}
+    \onslide<6->{r_0} & \onslide<6->{= q_1\,r_1 + r_2,} &&& \onslide<6->{\mcd (r_0,r_1)} & \onslide<6->{= \mcd (r_1,r_2),} \\
+    \onslide<7->{r_1} & \onslide<7->{= q_2\,r_2 + r_3,} &&& \onslide<7->{\mcd (r_1,r_2)} & \onslide<7->{= \mcd (r_2,r_3),} \\
+                      & \onslide<8->{\cdots} \\
+    \onslide<9->{r_{i-1}} & \onslide<9->{= q_i\,r_i + r_{i+1},} &&& \onslide<9->{\mcd (r_{i-1},r_i)} & \onslide<9->{= \mcd (r_i,r_{i+1}).} \\
+  \end{align*}
+  \begin{gather*}
+    \onslide<10->{|b| = |r_1| > r_2 > r_3 > r_4 > \cdots > r_n > r_{n+1} = 0,} \\
+    \onslide<11->{r_{n-1} = q_n\,r_n + r_{n+1},} \\
+    \onslide<12->{\mcd (r_{n-1},r_n) = \mcd (r_n,r_{n+1}) = \mcd (r_n,0) = r_n.}
+  \end{gather*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{EJEMPLO}
+
+  \begin{align*}
+    \onslide<2->{\mcd (462, 273)} & \onslide<3->{= \mcd (273, 189)} \\
+                                  & \onslide<4->{= \mcd (189, 84)} \\
+                                  & \onslide<5->{= \mcd (84, 21)} \\
+                                  & \onslide<6->{= \mcd (21, 0) = 21.}
+  \end{align*}
+
+  \onslide<7->{\[
+      462 = 2\cdot 3\cdot 7\cdot 11, \quad
+      273 = 3\cdot 7\cdot 13.
+    \]}
+
+  \vspace{1em}
+
+  \onslide<8->{\textbf{Ejercicio}.
+    Calcule $\mcd (144, 89)$ usando el algoritmo de Euclides.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{PROPOSICIÓN}
+  \onslide<2->{\begin{framed}
+      \[ \mcd (ca,cb) = |c|\cdot\mcd (a,b). \]
+    \end{framed}}
+
+  \onslide<3->{\textbf{Demostración}. Sin pérdida de generalidad, $c > 0$.}
+
+  \begin{align*}
+    \onslide<5->{c} \onslide<4->{r_0} & \onslide<4->{\dfn \onslide<5->{c} a,} \\
+    \onslide<5->{c} \onslide<4->{r_1} & \onslide<4->{\dfn \onslide<5->{c} b,} &&& \onslide<4->{\mcd (\onslide<5->{c}a,\onslide<5->{c}b)} & \onslide<4->{= \mcd (\onslide<5->{c}r_0,\onslide<5->{c}r_1),} \\
+    \onslide<5->{c} \onslide<4->{r_0} & \onslide<4->{= q_1\,\onslide<5->{c} r_1 + \onslide<5->{c} r_2,} &&& \onslide<4->{\mcd (\onslide<5->{c} r_0, \onslide<5->{c} r_1)} & \onslide<4->{= \mcd (\onslide<5->{c} r_1, \onslide<5->{c} r_2),} \\
+    \onslide<5->{c} \onslide<4->{r_1} & \onslide<4->{= q_2\,\onslide<5->{c} r_2 + \onslide<5->{c} r_3,} &&& \onslide<4->{\mcd (\onslide<5->{c} r_1, \onslide<5->{c} r_2)} & \onslide<4->{= \mcd (\onslide<5->{c} r_2, \onslide<5->{c} r_3),} \\
+                      & \onslide<4->{\cdots} \\
+    \onslide<5->{c} \onslide<4->{r_{n-1}} & \onslide<4->{= q_n\,\onslide<5->{c} r_n + \onslide<5->{c} r_{n+1},} &&& \onslide<4->{\mcd (\onslide<5->{c} r_{n-1}, \onslide<5->{c} r_n)} & \onslide<4->{= \mcd (\onslide<5->{c} r_n, \onslide<5->{c} r_{n+1}),} \\
+    \onslide<5->{c} \onslide<4->{r_{n+1}} & \onslide<4->{= 0,} &&& \onslide<4->{\mcd (\onslide<5->{c} r_n,0)} & \onslide<4->{= \onslide<5->{c} r_n.}
+  \end{align*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{COROLARIO}
+
+  \onslide<2->{\begin{framed}
+      Si $(a,b) \ne (0,0)$, pongamos $d \dfn \mcd (a,b)$.
+
+      \[ \mcd \left(\frac{a}{d}, \frac{b}{d}\right) = 1. \]
+    \end{framed}}
+
+  \onslide<3->{\textbf{Demostración}.}
+
+  \onslide<4->{\[
+      d = \mcd (a,b) =
+      \mcd \left(d\,\frac{a}{d}, \, d\,\frac{b}{d}\right) =
+      d\cdot \mcd \left(\frac{a}{d}, \frac{b}{d}\right). \qed
+    \]}
+\end{frame}
+
+\begin{frame}[plain,noframenumbering]
+  \vfill
+
+  \begin{center}\huge\headingfont
+    MÍNIMO COMÚN MÚLTIPLO
+  \end{center}
+
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{MÍNIMO COMÚN MÚLTIPLO (MCM)}
+
+  \onslide<2->{\textbf{Definición}. Para dos enteros $a$ y $b$,
+    el \textbf{mínimo común múltiplo} $m = \mcm (a,b)$
+    es el número natural $m$ tal que}
+  \begin{itemize}
+  \item<3-> es un \textbf{común múltiplo}: $a\mid m$ y $b\mid m$;
+  \item<4-> es \textbf{mínimo}: si $a\mid c$ y $b\mid c$, entonces $m\mid c$.
+  \end{itemize}
+
+  \vspace{1em}
+
+  \onslide<5->{\textbf{Observación}. Esto define a $m$ de modo único.}
+
+  \onslide<6->{Si $m$ y $m'$ satisfacen estas propiedades, entonces
+  \[ m \mid m'\text{ y }m' \mid m \Longrightarrow m = m'. \]}
+
+  \vspace{1em}
+
+  \onslide<7->{\textbf{Ejemplo}. $\mcm (42, 30) = 210$.}
+
+  \onslide<8->{\begin{center}\small
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabular}{ccccccccccc}
+      \hline
+      \onslide<8->{$42$} & \onslide<8->{$84$} & \onslide<8->{$126$} & \onslide<8->{$168$} & \onslide<8->{$210$} & \onslide<8->{$252$} & \onslide<8->{$294$} & \onslide<8->{$336$} & \onslide<8->{$378$} & \onslide<8->{$420$} & \onslide<8->{$\cdots$} \\
+      \hline
+      \onslide<9->{$30$} & \onslide<9->{$60$} & \onslide<9->{$90$} & \onslide<9->{$120$} & \onslide<9->{$150$} & \onslide<9->{$180$} & \onslide<9->{$210$} & \onslide<9->{$240$} & \onslide<9->{$270$} & \onslide<9->{$300$} & \onslide<9->{$\cdots$} \\
+      \hline
+    \end{tabular}
+  \end{center}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{EXISTENCIA Y CÁLCULO}
+
+  \onslide<2->{\begin{framed}
+      $\mcm (0,0) = 0$, y para $(a,b) \ne (0,0)$,
+      $$\mcm (a,b) = \frac{|ab|}{\mcd (a,b)}.$$
+    \end{framed}}
+
+  \onslide<3->{\textbf{Demostración}. Sin pérdida de generalidad, $a, b \ge 0$.}
+
+  \begin{itemize}
+  \item<4-> $d \dfn \mcd (a,b)$, $a' \dfn \frac{a}{d}$, $b' \dfn \frac{b}{d}$.
+
+  \item<5-> $m \dfn \frac{ab}{d} = ab' = a'b$.
+
+  \item<6-> \textbf{Común múltiplo}: $a\mid m$ y $b\mid m$.
+
+  \item<7-> \textbf{Minimalidad}:
+    $$\mcd (ca', cb') = c\,\underbrace{\mcd (a',b')}_{= 1} = c;$$
+    $a\mid c$ y $b\mid c$ $\Longrightarrow$
+    $m = ba' \mid ca'$ y $m = ab' \mid cb'$ $\Longrightarrow$
+    $m \mid c$. \qed
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{EJEMPLO}
+
+  \onslide<2->{\[ \mcm (42, 30) = \text{???} \]}
+
+  \onslide<3->{\[ \mcd (42, 30) = \mcd (30, 12) = \mcd (12, 6) = 6. \]}
+ 
+  \onslide<4->{\[ \mcm (42, 30) = \frac{42\cdot 30}{\mcd (42, 30)} = \frac{42\cdot 30}{6} = 210. \]}
+\end{frame}
+
+\begin{frame}
+  \frametitle{PROPIEDADES DEL MCM}
+
+  \begin{itemize}
+  \item<2-> $\mcm (a,0) = 0$.
+
+  \item<3-> $\mcm (a,a) = a$.
+
+  \item<4-> $\mcm (a,b) = a$ si y solo si $b\mid a$.
+
+  \item<5-> $\mcm (a,b) = \mcm (b,a)$.
+
+  \item<6-> $\mcm (\mcm (a,b), c) = \mcm (a, \mcm (b,c)) = \mcm (a,b,c)$.
+  \end{itemize}
+
+  \onslide<7->{\textbf{Demostración}. Ejercicio.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{EJERCICIO: «DISTRIBUTIVIDAD»}
+
+  \onslide<2->{\begin{align*}
+    \max (a, \min(b, c)) & = \min (\max(a, b), \max(a, c)), \\
+    \min (a, \max(b, c)) & = \max (\min(a, b), \min(a, c)).
+  \end{align*}}
+
+  \onslide<3->{\begin{align*}
+    \mcd (a, \mcm(b, c)) & = \mcm (\mcd(a, b), \mcd(a, c)), \\
+    \mcm (a, \mcd(b, c)) & = \mcd (\mcm(a, b), \mcm(a, c)).
+  \end{align*}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A CONTINUACIÓN: IDENTIDAD DE BÉZOUT}
+
+  \begin{itemize}
+  \item<2-> Para cualesquiera $a,b \in \ZZ$ existen $x,y \in \ZZ$ tales que
+    $$ax + by = \mcd (a,b).$$
+
+  \item<3-> Para $(a,b) \ne (0,0)$ el MCD es exactamente el mínimo número positivo
+    que se expresa de la forma $ax + by$:
+    $$\mcd (a,b) = \min \{ ax + by > 0 \mid x,y \in \ZZ \}.$$
+
+  \item<4-> Cómo resolver la \textbf{ecuación diofántica}
+    $$ax + by = c$$
+    para $a,b,c \in \ZZ$ fijos.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[plain,noframenumbering]
+
+  \vfill
+
+  \begin{center}\huge\headingfont
+    ¡GRACIAS POR SU ATENCIÓN!
+  \end{center}
+
+  \vfill
+\end{frame}
+\end{document}
