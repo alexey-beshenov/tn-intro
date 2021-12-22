@@ -27,6 +27,20 @@
 \begin{frame}[fragile]
   \vfill
 
+  \[ \begin{tikzcd}[row sep=2em, column sep=3em, cells={inner sep=0pt, outer sep=2pt}]
+      420\ar[-]{dd}\ar[dashed,-]{dr}\ar[bend left=20,-]{ddrr} & & 630\ar[-]{dd}\ar[dashed,-]{dl}\ar[bend right=20,-]{ddll} \\
+      & 210\ar[-]{dl}\ar[-]{dr} \\
+      30\ar[-]{dr}\ar[-]{dd}\ar[bend left=20,-]{ddrr} && 105\ar[-]{dl}\ar[-]{dd}\ar[bend right=20,-]{ddll} \\
+      & 15\ar[dashed,-]{dl}\ar[dashed,-]{dr} \\
+      3 & & 5
+    \end{tikzcd} \]
+
+  \vfill
+\end{frame}
+
+\begin{frame}[fragile]
+  \vfill
+
   \[ \begin{tikzcd}[row sep=2em, column sep=3em]
       & m\ar[dashed,-]{d}\ar[-]{ddl}\ar[-]{ddr} \\
       & \mcm (a,b)\ar[-]{dl}\ar[-]{dr} \\
