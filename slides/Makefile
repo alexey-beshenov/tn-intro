@@ -3,7 +3,8 @@ all: divisibilidad.pdf divisibilidad-handout.pdf \
      numeracion.pdf numeracion-handout.pdf \
      primos.pdf primos-handout.pdf \
      mcd-mcm.pdf mcd-mcm-handout.pdf \
-     bezout.pdf bezout-handout.pdf
+     bezout.pdf bezout-handout.pdf \
+     gauss-euclides.pdf gauss-euclides-handout.pdf
 
 %.pdf: %.tex
 	xelatex $<
